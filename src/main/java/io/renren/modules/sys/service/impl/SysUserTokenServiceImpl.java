@@ -27,7 +27,7 @@ public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUse
 
 	@Override
 	public R createToken(long userId) {
-		//生成一个token
+		//生成一个随机token
 		String token = TokenGenerator.generateValue();
 
 		//当前时间

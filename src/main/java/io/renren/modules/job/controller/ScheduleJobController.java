@@ -60,7 +60,7 @@ public class ScheduleJobController {
 	@RequestMapping("/save")
 	@RequiresPermissions("sys:schedule:save")
 	public R save(@RequestBody ScheduleJobEntity scheduleJob){
-		ValidatorUtils.validateEntity(scheduleJob);
+		ValidatorUtils.validateEntity(scheduleJob); // 对前端传来的数据进行校验
 		
 		scheduleJobService.saveJob(scheduleJob);
 		

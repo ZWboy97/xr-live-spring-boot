@@ -21,12 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
 
-
-/**
- * 系统日志
- *
- * @author Mark sunlightcs@gmail.com
- */
 @Controller
 @RequestMapping("/sys/log")
 public class SysLogController {

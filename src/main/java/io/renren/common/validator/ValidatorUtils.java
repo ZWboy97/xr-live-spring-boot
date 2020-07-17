@@ -23,9 +23,10 @@ import java.util.Set;
  * @author Mark sunlightcs@gmail.com
  */
 public class ValidatorUtils {
-    private static Validator validator;
+    private static Validator validator; // javax提供的validator
 
     static {
+        // 类加载初始化时候创建
         validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 

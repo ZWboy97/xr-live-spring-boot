@@ -12,8 +12,7 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 /**
  * 多数据源
- *
- * @author Mark sunlightcs@gmail.com
+ * determineCurrentLookupKey是实现多数据源的核心
  */
 public class DynamicDataSource extends AbstractRoutingDataSource {
 

@@ -49,7 +49,7 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigDao, SysConfigEnt
 	@Override
 	public void saveConfig(SysConfigEntity config) {
 		this.save(config);
-		sysConfigRedis.saveOrUpdate(config);
+		sysConfigRedis.saveOrUpdate(config); // 同步redis缓存
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigDao, SysConfigEnt
 
 	@Override
 	public String getValue(String key) {
-		SysConfigEntity config = sysConfigRedis.get(key);
+		SysConfigEntity config = sysConfigRedis.get(key); // 从缓存中读取
 		if(config == null){
 			config = baseMapper.queryByKey(key);
 			sysConfigRedis.saveOrUpdate(config);

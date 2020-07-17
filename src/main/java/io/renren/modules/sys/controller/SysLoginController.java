@@ -1,11 +1,3 @@
-/**
- * Copyright (c) 2016-2019 人人开源 All rights reserved.
- *
- * https://www.renren.io
- *
- * 版权所有，侵权必究！
- */
-
 package io.renren.modules.sys.controller;
 
 import io.renren.common.utils.R;
@@ -31,8 +23,6 @@ import java.util.Map;
 
 /**
  * 登录相关
- *
- * @author Mark sunlightcs@gmail.com
  */
 @RestController
 public class SysLoginController extends AbstractController {
@@ -44,23 +34,24 @@ public class SysLoginController extends AbstractController {
 	private SysCaptchaService sysCaptchaService;
 
 	/**
-	 * 验证码
+	 * 基于uuid，生成验证码
 	 */
 	@GetMapping("captcha.jpg")
 	public void captcha(HttpServletResponse response, String uuid)throws IOException {
 		response.setHeader("Cache-Control", "no-store, no-cache");
 		response.setContentType("image/jpeg");
-
 		//获取图片验证码
 		BufferedImage image = sysCaptchaService.getCaptcha(uuid);
-
+		// 获取网络输出流
 		ServletOutputStream out = response.getOutputStream();
+		// 将图片以jpg格式写入到输出流中
 		ImageIO.write(image, "jpg", out);
+		// ？？静默关闭out
 		IOUtils.closeQuietly(out);
 	}
 
 	/**
-	 * 登录
+	 * 登录，登录表单提交
 	 */
 	@PostMapping("/sys/login")
 	public Map<String, Object> login(@RequestBody SysLoginForm form)throws IOException {

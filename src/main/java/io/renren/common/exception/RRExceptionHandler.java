@@ -19,7 +19,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 /**
  * 异常处理器
- *
+ * 异常均会被它捕获
  * @author Mark sunlightcs@gmail.com
  */
 @RestControllerAdvice

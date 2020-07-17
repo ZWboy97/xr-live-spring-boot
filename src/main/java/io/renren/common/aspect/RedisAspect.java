@@ -27,9 +27,12 @@ import org.springframework.context.annotation.Configuration;
 public class RedisAspect {
     private Logger logger = LoggerFactory.getLogger(getClass());
     //是否开启redis缓存  true开启   false关闭
+    // 从配置文件中读取
     @Value("${spring.redis.open: false}")
     private boolean open;
 
+    // 当调用了RedisUtil中的方法时
+    // 只有redis配置为open的时候，才允许执行，否则直接跳过
     @Around("execution(* io.renren.common.utils.RedisUtils.*(..))")
     public Object around(ProceedingJoinPoint point) throws Throwable {
         Object result = null;

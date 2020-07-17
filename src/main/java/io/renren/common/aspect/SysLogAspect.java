@@ -39,12 +39,14 @@ import java.util.Date;
 public class SysLogAspect {
 	@Autowired
 	private SysLogService sysLogService;
-	
+
+	// 定义一个切点
 	@Pointcut("@annotation(io.renren.common.annotation.SysLog)")
 	public void logPointCut() { 
 		
 	}
 
+	// 直接复用切点
 	@Around("logPointCut()")
 	public Object around(ProceedingJoinPoint point) throws Throwable {
 		long beginTime = System.currentTimeMillis();

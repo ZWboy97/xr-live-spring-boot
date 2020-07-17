@@ -23,27 +23,33 @@ public class TokenGenerator {
     public static String generateValue() {
         return generateValue(UUID.randomUUID().toString());
     }
-
+    // 作为最终生成16进制串的字典
     private static final char[] hexCode = "0123456789abcdef".toCharArray();
 
+    /**
+     * 将数组转换成16进制的字符串
+     * @param data
+     * @return
+     */
     public static String toHexString(byte[] data) {
         if(data == null) {
             return null;
         }
-        StringBuilder r = new StringBuilder(data.length*2);
+        StringBuilder r = new StringBuilder(data.length*2); // 四位对应一个16进制字符
         for ( byte b : data) {
-            r.append(hexCode[(b >> 4) & 0xF]);
-            r.append(hexCode[(b & 0xF)]);
+            r.append(hexCode[(b >> 4) & 0xF]); // 取高四位：先右移，然后位与取低四位
+            r.append(hexCode[(b & 0xF)]); // 取低四位：直接位与取低四位
         }
         return r.toString();
     }
 
     public static String generateValue(String param) {
         try {
+            // 摘要算法，这里采用MD5算法
             MessageDigest algorithm = MessageDigest.getInstance("MD5");
             algorithm.reset();
-            algorithm.update(param.getBytes());
-            byte[] messageDigest = algorithm.digest();
+            algorithm.update(param.getBytes()); // 输入的串
+            byte[] messageDigest = algorithm.digest(); //生成摘要
             return toHexString(messageDigest);
         } catch (Exception e) {
             throw new RRException("生成Token失败", e);
