@@ -26,6 +26,7 @@ import java.util.Map;
  */
 @RestController
 public class SysLoginController extends AbstractController {
+
 	@Autowired
 	private SysUserService sysUserService;
 	@Autowired

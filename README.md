@@ -59,6 +59,6 @@ IDEA打开项目，并安装插件lombok插件，不然会提示找不到entity�
 执行XRLiveApplicaion.java，启动项目
 
 ### 相关资源与路径
-- 
+ 
 - Swagger文档路径：http://localhost:8080/renren-fast/swagger/index.html
 - Swagger注解路径：http://localhost:8080/renren-fast/swagger-ui.html
