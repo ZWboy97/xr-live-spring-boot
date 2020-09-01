@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -102,7 +103,18 @@ public class OAuth2Filter extends AuthenticatingFilter {
         if(StringUtils.isBlank(token)){
             token = httpRequest.getParameter("token");
         }
-
+        // 如果不存在，则从cookie中读取
+        if(StringUtils.isBlank(token)){
+            Cookie[] cookies = httpRequest.getCookies();
+            if(cookies!= null){
+                for (Cookie cookie :cookies) {
+                    if(cookie.getName().equals("token")){
+                        token = cookie.getValue();
+                        break;
+                    }
+                }
+            }
+        }
         return token;
     }
 
